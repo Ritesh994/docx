@@ -1,0 +1,158 @@
+<HTML>
+
+<head>
+  <title>
+    REGISTRATION FORM
+  </title>
+</head>
+
+<body bgcolor="cyan">
+  <div>
+
+    <h3 style="text-align: center; font-weight: bold;">Registration Form</h3>
+
+  </div>
+  <br>
+  <br>
+
+  <label for="name"> FULL NAME :</label><br>
+  <input type="text" placeholder="enter full name" name="full name" id="full Name"><br><br>
+  <label for="motherName">MOTHER'S NAME:</label><br>
+  <input type="text" placeholder="enter mother's name" name="mother Name" id="mother Name"><br><br>
+  <label for="fatherName">FATHER'S NAME:</label><br>
+  <input type="text" placeholder="enter father's name" name="father Name" id="father Name"><br><br>
+  <label for="password">PASSWORD :</label><br>
+  <input type="password" placeholder="enter password" name="password" id="password"><br><br>
+  <label for="city">CITY:</label><br><br>
+  <input type="text" placeholder="enter city" name="city" id="city"><br><br>
+  <label for="dob"> DATE OF BIRTH :</label><br><br>
+  <input type="date" id="date" placeholder="dob" name="dob" id="date"><br><br>
+  <label for="phonenumber">PHONE NUMBER:</label><br><br>
+  <input type="number" placeholder="enter phone number" name="phone number" id="phoneNumber"><br><br>
+  <label>
+    GENDER:
+  </label><br><br>
+  <input type="radio" name="gender" value="male">
+  <label for="male"> MALE</label>
+  <br>
+  <input type="radio" name="gender" value="female">
+  <label for="female"> FEMALE</label>
+  <br>
+  <input type="radio" name="gender" value="other">
+  <label for="other"> OTHER</label>
+  <br><br>
+  <label for="email"> EMAIL :</label><br><br>
+  <input type="email" placeholder="enter email" id="email" name="email" required><br><br>
+  <label for="address"> ADDRESS :</label><br><br>
+  <textarea cols="70" rows="4" value="address" id="address">
+</textarea><br><br>
+  <label>
+    COURSE:
+  </label>
+  <select name="course" id="course">
+    <option value=""></option>
+    <option value="BBA">BBA</option>
+    <option value="BCA">BCA</option>
+    <option value="MBA">MBA</option>
+    <option value="MCA">MCA</option>
+    <option value="MTECH">BTECH</option>
+  </select>
+  <br><br>
+
+  <input type="button" value="Clear" onclick="clearField()">
+  <input type="button" value="Submit" onclick="submit()"><br><br>
+  <script>
+    function submit() {
+      var fullName = document.getElementById("fullName").value.trim();
+      var motherName = document.getElementById("motherName").value.trim();
+      var fatherName = document.getElementById("fatherName").value.trim();
+      var password = document.getElementById("password").value;
+      var city = document.getElementById("city").value.trim();
+      var date = document.getElementById("date").value.trim();
+      var phoneNumber = document.getElementById("phoneNumber").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var address = document.getElementById("address").value.trim();
+      var genderList = document.getElementsByName("gender");
+      var gender = null;
+      var course = document.getElementById("course").value;
+
+
+      for(i = 0; i < genderList.length; i++) { 
+        if(genderList[i].checked){
+          gender = genderList[i].value
+        }
+      }
+
+      if (fullName == "") {
+        alert("fullName is Empty");
+        document.getElementById("fullName").focus();
+        return;
+      } else if (motherName == "") {
+        alert("motherName is Empty");
+        document.getElementById("motherName").focus();
+        return;
+      } else if (fatherName == "") {
+        alert("fatherName is Empty");
+        document.getElementById("fatherName").focus();
+        return;
+      } else if (password == "") {
+        alert("password is Empty");
+        document.getElementById("password").focus();
+        return;
+      } else if (city == "") {
+        alert("city is Empty");
+        document.getElementById("city").focus();
+        return;
+      } else if (date == "") {
+        alert("date is Empty");
+        document.getElementById("date").focus();
+        return;
+      } else if (phoneNumber == "" || phoneNumber.length != 10) {
+        alert("phone number must be of 10 digits");
+        document.getElementById("phoneNumber").focus();
+        return;
+      } else if (gender == null) {
+        alert("gender is Empty");
+        document.getElementById("gender").focus();
+        return;
+      } else if (course == "" || course == undefined) {
+        alert("course is Empty");
+        document.getElementById("course").focus();
+        return;
+      } else if (!validateEmail(email)) {
+        alert("Email must be valid");
+        document.getElementById("email").focus();
+        return;
+      } else if (address == "") {
+        alert("Address is Empty");
+        document.getElementById("address").focus();
+        return;
+      }
+
+      alert("SuccessFull");
+      clearField();
+
+    }
+
+    function validateEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    function clearField() {
+      document.getElementById("fullName").value = "";
+      document.getElementById("motherName").value = "";
+      document.getElementById("fatherName").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("city").value = "";
+      document.getElementById("date").value = "";
+      document.getElementById("phoneNumber").value = "";
+      document.getElementsByName("gender").value = "";
+      document.getElementById("course").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("address").value = "";
+    }
+  </script>
+</body>
+
+</HTML>
